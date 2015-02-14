@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\S_Next_Block_Bottom.cs" />
      <Compile Include="Assets\Scripts\S_Next_Block_Top.cs" />
      <Compile Include="Assets\Scripts\S_Next_Blocks_Controller.cs" />
      <Compile Include="Assets\Scripts\S_Socket_1.cs" />
@@ -57,6 +58,7 @@
      <Compile Include="Assets\Scripts\S_Tower2_Controller.cs" />
      <Compile Include="Assets\Scripts\S_Tower3_Controller.cs" />
      <Compile Include="Assets\Scripts\S_Tower4_Controller.cs" />
+     <Compile Include="Assets\Scripts\S_Tower5_Controller.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

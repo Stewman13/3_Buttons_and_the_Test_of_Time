@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class S_Tower2_Controller : MonoBehaviour {
+public class S_Tower5_Controller : MonoBehaviour {
 
 	public GameObject NextBlocks;
-	public GameObject ThisTower2;
-	public GameObject NextTower2;
+	public GameObject ThisTower5;
+	public GameObject NextTower5;
 	
 	public GameObject Socket1;
 	public GameObject Socket2;
@@ -20,7 +20,7 @@ public class S_Tower2_Controller : MonoBehaviour {
 	
 	public bool ThisIsSelected = true;
 	public bool BugFix = false;
-	
+
 	// Use this for initialization
 	void Start () {
 		
@@ -32,28 +32,27 @@ public class S_Tower2_Controller : MonoBehaviour {
 		DestroyBlockCommand();
 		BugFix = false;
 	}
-
 	
 	void SelectNextTower(){
 		if (Input.GetKeyUp(KeyCode.Space) && ThisIsSelected == true && BugFix == false){
 			ThisIsSelected = false;
-			print ("sent2");
-			NextTower2.SendMessage ("Selected2");
+			print ("sent5");
+			NextTower5.SendMessage ("Selected5");
 		}
 	}
 	
 	void DestroyBlockCommand(){
 		if (Input.GetKeyUp(KeyCode.LeftArrow) && ThisIsSelected == true){
-			print ("sent2");
+			print ("sent5");
 			Socket5.SendMessage ("DestroyBlock");
 			Socket10.SendMessage ("DestroyBlock");
 		}
 	}
-
-	void Selected1(){
+	
+	void Selected4(){
 		BugFix = true;
 		ThisIsSelected = true;
-		NextBlocks.SendMessage("SelectedTower2");
+		NextBlocks.SendMessage("SelectedTower5");
 	}
 	
 	//Colour Add for Socket 1
