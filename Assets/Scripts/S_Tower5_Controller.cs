@@ -3,6 +3,8 @@ using System.Collections;
 
 public class S_Tower5_Controller : MonoBehaviour {
 
+	public AudioSource DestroySound;
+
 	public GameObject NextBlocks;
 	public GameObject ThisTower5;
 	public GameObject NextTower5;
@@ -44,6 +46,7 @@ public class S_Tower5_Controller : MonoBehaviour {
 	void DestroyBlockCommand(){
 		if (Input.GetKeyUp(KeyCode.LeftArrow) && ThisIsSelected == true){
 			print ("sent5");
+			DestroySound.Play();
 			Socket5.SendMessage ("DestroyBlock");
 			Socket10.SendMessage ("DestroyBlock");
 		}

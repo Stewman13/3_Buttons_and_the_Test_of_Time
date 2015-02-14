@@ -6,6 +6,8 @@ public class S_Next_Block_Top : MonoBehaviour {
 
 	public bool sending = false; //made to fix an annoying bug with colour sending!
 
+	public AudioSource AddBlockSound;
+
 	public GameObject TowerSelected;
 	public GameObject CurrentColour;
 	public GameObject NextColourBlock;
@@ -69,6 +71,7 @@ public class S_Next_Block_Top : MonoBehaviour {
 	void SendColour(){
 		if (Input.GetKeyUp(KeyCode.RightArrow) && CurrentColour == RedBlock && sending == false){
 			sending = true;
+			AddBlockSound.Play();
 			print ("sent Red!");
 			TowerSelected.SendMessage ("AddRedBlock");
 			Destroy (NextColourBlock);
@@ -76,6 +79,7 @@ public class S_Next_Block_Top : MonoBehaviour {
 		}
 		if (Input.GetKeyUp(KeyCode.RightArrow) && CurrentColour == GreenBlock && sending == false){
 			sending = true;
+			AddBlockSound.Play();
 			print ("sent Green!");
 			TowerSelected.SendMessage ("AddGreenBlock");
 			Destroy (NextColourBlock);
@@ -83,6 +87,7 @@ public class S_Next_Block_Top : MonoBehaviour {
 		}
 		if (Input.GetKeyUp(KeyCode.RightArrow) && CurrentColour == BlueBlock && sending == false){
 			sending = true;
+			AddBlockSound.Play();
 			print ("sent Blue!");
 			TowerSelected.SendMessage ("AddBlueBlock");
 			Destroy (NextColourBlock);
@@ -90,6 +95,7 @@ public class S_Next_Block_Top : MonoBehaviour {
 		}
 		if (Input.GetKeyUp(KeyCode.RightArrow) && CurrentColour == YellowBlock && sending == false){
 			sending = true;
+			AddBlockSound.Play();
 			print ("sent Yellow!");
 			TowerSelected.SendMessage ("AddYellowBlock");
 			Destroy (NextColourBlock);
