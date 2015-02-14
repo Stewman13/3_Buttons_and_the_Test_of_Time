@@ -39,7 +39,7 @@ public class S_Socket_1 : MonoBehaviour {
 			Empty = false;
 		}
 	}
-
+	
 
 	//Set of 'add block' Recivers
 	void AddRedBlock(){
@@ -91,6 +91,14 @@ public class S_Socket_1 : MonoBehaviour {
 		}
 	}
 	//End of Recivers
+
+
+	void BeingPoppedVrtcl(){
+		Destroy (BlockInPlace);
+		//Add 20 points!!
+		BlockInSocket = EmptySocketBlock;
+		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+	}
 
 	void DestroyBlock (){
 		if (Empty == false){

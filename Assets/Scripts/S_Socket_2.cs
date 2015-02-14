@@ -3,7 +3,11 @@ using System.Collections;
 
 public class S_Socket_2 : MonoBehaviour {
 
+	public bool SameColourAbove = false;
+	public bool SameColourUnder = false;
 	public bool Empty = true;
+
+	public float BlockGapDistance;
 	
 	public GameObject Socket1;
 	public GameObject Socket2;
@@ -28,6 +32,8 @@ public class S_Socket_2 : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		EmptySocket();
+		RayCasts();
+		BlockPopper();
 	}
 	
 	void EmptySocket(){
@@ -39,7 +45,60 @@ public class S_Socket_2 : MonoBehaviour {
 			Empty = false;
 		}
 	}
-	
+
+	void RayCasts(){
+		RaycastHit HitDown;
+		RaycastHit HitUp;
+
+		Ray ColourCheckerUp = new Ray(transform.position, Vector3.up);
+		Ray ColourCheckerDown = new Ray(transform.position, Vector3.down);
+
+		Debug.DrawRay(transform.position, Vector3.up * BlockGapDistance);
+		Debug.DrawRay(transform.position, Vector3.down * BlockGapDistance);
+
+		if(!Empty){
+			if(Physics.Raycast(ColourCheckerDown, out HitDown, BlockGapDistance)){ 
+				if(HitDown.collider.tag == "Red_Box"  && BlockInSocket == RedBlock){
+					SameColourUnder = true;
+				}
+				if(HitDown.collider.tag == "Blue_Box"  && BlockInSocket == BlueBlock){
+					SameColourUnder = true;
+				}
+				if(HitDown.collider.tag == "Green_Box"  && BlockInSocket == GreenBlock){
+					SameColourUnder = true;
+				}
+				if(HitDown.collider.tag == "Yellow_Box"  && BlockInSocket == YellowBlock){
+					SameColourUnder = true;
+				}
+				if(HitDown.collider.tag == "Empty_Socket"){
+					SameColourUnder = false;
+				}
+			}
+			if(Physics.Raycast(ColourCheckerUp, out HitUp, BlockGapDistance)){ 
+				if(HitUp.collider.tag == "Red_Box"  && BlockInSocket == RedBlock){
+					SameColourAbove = true;
+				}
+				if(HitUp.collider.tag == "Blue_Box"  && BlockInSocket == BlueBlock){
+					SameColourAbove = true;
+				}
+				if(HitUp.collider.tag == "Green_Box"  && BlockInSocket == GreenBlock){
+					SameColourAbove = true;
+				}
+				if(HitUp.collider.tag == "Yellow_Box"  && BlockInSocket == YellowBlock){
+					SameColourAbove = true;
+				}
+				if(HitUp.collider.tag == "Empty_Socket"){
+					SameColourAbove = false;
+				}
+			}
+		}
+	}
+
+	void BlockPopper(){
+		if(SameColourAbove == true && SameColourUnder == true){
+			PopVrtcl();
+		}
+	}
 
 	//Set of 'add block' Recivers
 	void AddRedBlock(){
@@ -95,6 +154,8 @@ public class S_Socket_2 : MonoBehaviour {
 	void DestroyBlock (){
 		if (Empty == false){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
@@ -102,28 +163,49 @@ public class S_Socket_2 : MonoBehaviour {
 			Socket1.SendMessage ("DestroyBlock");
 		}
 	}
-	
+
+	//match 3 made, this gives points!!!
+	void PopVrtcl(){
+		Destroy (BlockInPlace);
+		SameColourUnder = false;
+		SameColourAbove = false;
+		//Add 20 points!!!!!!!!!!!!!!!!!!!
+		BlockInSocket = EmptySocketBlock;
+		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		Socket1.SendMessage("BeingPoppedVrtcl"); 
+		Socket3.SendMessage("BeingPoppedVrtcl"); // I can't just make this pop, because it will interfear with it's own 'Pop'
+	}
+
+	//A message receiver from socket 1, to tell block in socket 2 to move down.
 	void Emptying(){
 		if (Empty == false && BlockInSocket == RedBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket1.SendMessage ("AddRedBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
 		if (Empty == false && BlockInSocket == BlueBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket1.SendMessage ("AddBlueBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
 		if (Empty == false && BlockInSocket == GreenBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket1.SendMessage ("AddGreenBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
 		if (Empty == false && BlockInSocket == YellowBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket1.SendMessage ("AddYellowBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;

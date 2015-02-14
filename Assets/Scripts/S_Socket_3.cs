@@ -95,6 +95,13 @@ public class S_Socket_3 : MonoBehaviour {
 		}
 	}
 
+	void BeingPoppedVrtcl(){
+		Destroy (BlockInPlace);
+		//Add 20 points!!
+		BlockInSocket = EmptySocketBlock;
+		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+	}
+
 
 	void Emptying(){
 		if (Empty == false && BlockInSocket == RedBlock){
