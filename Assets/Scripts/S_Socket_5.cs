@@ -3,6 +3,9 @@ using System.Collections;
 
 public class S_Socket_5 : MonoBehaviour {
 
+	
+	public bool SameColourAbove = false;
+	public bool SameColourUnder = false;
 	public bool Empty = true;
 	
 	public GameObject Socket1;
@@ -38,7 +41,6 @@ public class S_Socket_5 : MonoBehaviour {
 			Empty = false;
 		}
 	}
-	
 	
 	//Set of 'add block' Recivers
 	void AddRedBlock(){
@@ -94,27 +96,44 @@ public class S_Socket_5 : MonoBehaviour {
 		}
 	}
 
+	void BeingPoppedVrtcl(){
+		Destroy (BlockInPlace);
+		SameColourUnder = false;
+		SameColourAbove = false;
+		//Add 20 points!!
+		BlockInSocket = EmptySocketBlock;
+		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+	}
+
 	void Emptying(){
 		if (Empty == false && BlockInSocket == RedBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket4.SendMessage ("AddRedBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
 		if (Empty == false && BlockInSocket == BlueBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket4.SendMessage ("AddBlueBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
 		if (Empty == false && BlockInSocket == GreenBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket4.SendMessage ("AddGreenBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		}
 		if (Empty == false && BlockInSocket == YellowBlock){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
 			Socket4.SendMessage ("AddYellowBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;

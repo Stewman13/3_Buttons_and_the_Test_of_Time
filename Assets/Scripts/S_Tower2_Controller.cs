@@ -4,8 +4,8 @@ using System.Collections;
 public class S_Tower2_Controller : MonoBehaviour {
 
 	public GameObject NextBlocks;
-	public GameObject ThisTower;
-	public GameObject NextTower;
+	public GameObject ThisTower2;
+	public GameObject NextTower2;
 	
 	public GameObject Socket1;
 	public GameObject Socket2;
@@ -23,35 +23,30 @@ public class S_Tower2_Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		IfSelected();
 		SelectNextTower();
 		DestroyBlockCommand();
 	}
-	
-	void IfSelected(){
-		if (ThisIsSelected == true){
-			NextBlocks.SendMessage("SelectedTower2");
-		}
-	}
+
 	
 	void SelectNextTower(){
 		if (Input.GetKeyUp(KeyCode.Space) && ThisIsSelected == true){
 			ThisIsSelected = false;
-			NextTower.SendMessage ("Selected");
+			print ("sent2");
+			NextTower2.SendMessage ("Selected2");
 		}
 	}
-
+	
 	void DestroyBlockCommand(){
 		if (Input.GetKeyUp(KeyCode.LeftArrow) && ThisIsSelected == true){
-			print ("sent");
+			print ("sent2");
 			Socket5.SendMessage ("DestroyBlock");
 		}
 	}
 
-	void Selected(){
+	void Selected1(){
 		ThisIsSelected = true;
+		NextBlocks.SendMessage("SelectedTower2");
 	}
-
 	
 	//Colour Add for Socket 1
 	void AddRedBlock(){

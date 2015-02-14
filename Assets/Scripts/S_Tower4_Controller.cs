@@ -1,54 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class S_Tower1_Controller : MonoBehaviour {
+public class S_Tower4_Controller : MonoBehaviour {
 
 	public GameObject NextBlocks;
-	public GameObject ThisTower1;
-	public GameObject NextTower1;
-
+	public GameObject ThisTower4;
+	public GameObject NextTower4;
+	
 	public GameObject Socket1;
 	public GameObject Socket2;
 	public GameObject Socket3;
 	public GameObject Socket4;
 	public GameObject Socket5;
-
+	
 	public bool ThisIsSelected = true;
-	public bool BugFix = false; //Stops tower auto switching to tower 2 after switching back from tower 4.
-
+	
 	// Use this for initialization
 	void Start () {
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		SelectNextTower();
 		DestroyBlockCommand();
-		BugFix = false;
 	}
-
+	
 	void SelectNextTower(){
-		if (Input.GetKeyUp(KeyCode.Space) && ThisIsSelected == true && BugFix == false){
+		if (Input.GetKeyUp(KeyCode.Space) && ThisIsSelected == true){
 			ThisIsSelected = false;
-			print ("sent1");
-			NextTower1.SendMessage ("Selected1");
+			print ("sent4");
+			NextTower4.SendMessage ("Selected4");
 		}
 	}
-
+	
 	void DestroyBlockCommand(){
 		if (Input.GetKeyUp(KeyCode.LeftArrow) && ThisIsSelected == true){
-			print ("sent1");
+			print ("sent4");
 			Socket5.SendMessage ("DestroyBlock");
 		}
 	}
-
-	void Selected4(){
-		BugFix = true;
+	
+	void Selected3(){
 		ThisIsSelected = true;
-		NextBlocks.SendMessage("SelectedTower1");
+		NextBlocks.SendMessage("SelectedTower4");
 	}
-
+	
 	//Colour Add for Socket 1
 	void AddRedBlock(){
 		Socket1.SendMessage("AddRedBlock");

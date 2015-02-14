@@ -7,7 +7,7 @@ public class S_Socket_2 : MonoBehaviour {
 	public bool SameColourUnder = false;
 	public bool Empty = true;
 
-	public float BlockGapDistance;
+	public float BlockGapDistance  = 2;
 	
 	public GameObject Socket1;
 	public GameObject Socket2;
@@ -46,6 +46,7 @@ public class S_Socket_2 : MonoBehaviour {
 		}
 	}
 
+	//detects for a collison of 3
 	void RayCasts(){
 		RaycastHit HitDown;
 		RaycastHit HitUp;
@@ -95,7 +96,7 @@ public class S_Socket_2 : MonoBehaviour {
 	}
 
 	void BlockPopper(){
-		if(SameColourAbove == true && SameColourUnder == true){
+		if(SameColourAbove == true && SameColourUnder == true && Empty == false){
 			PopVrtcl();
 		}
 	}
@@ -175,6 +176,16 @@ public class S_Socket_2 : MonoBehaviour {
 		Socket1.SendMessage("BeingPoppedVrtcl"); 
 		Socket3.SendMessage("BeingPoppedVrtcl"); // I can't just make this pop, because it will interfear with it's own 'Pop'
 	}
+
+	void BeingPoppedVrtcl(){
+		Destroy (BlockInPlace);
+		SameColourUnder = false;
+		SameColourAbove = false;
+		//Add 20 points!!
+		BlockInSocket = EmptySocketBlock;
+		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+	}
+
 
 	//A message receiver from socket 1, to tell block in socket 2 to move down.
 	void Emptying(){

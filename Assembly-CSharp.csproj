@@ -55,6 +55,8 @@
      <Compile Include="Assets\Scripts\S_Socket_5.cs" />
      <Compile Include="Assets\Scripts\S_Tower1_Controller.cs" />
      <Compile Include="Assets\Scripts\S_Tower2_Controller.cs" />
+     <Compile Include="Assets\Scripts\S_Tower3_Controller.cs" />
+     <Compile Include="Assets\Scripts\S_Tower4_Controller.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
