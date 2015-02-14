@@ -1,14 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\S_Socket_5.cs">
-    <Files>
-      <File FileName="Assets\Scripts\S_Socket_1.cs" Line="44" Column="4" />
-      <File FileName="Assets\Scripts\S_Socket_2.cs" Line="235" Column="46" />
-      <File FileName="Assets\Scripts\S_Socket_3.cs" Line="219" Column="43" />
-      <File FileName="Assets\Scripts\S_Socket_4.cs" Line="222" Column="46" />
-      <File FileName="Assets\Scripts\S_Socket_5.cs" Line="143" Column="55" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

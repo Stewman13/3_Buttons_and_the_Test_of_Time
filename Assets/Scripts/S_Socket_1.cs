@@ -95,13 +95,8 @@ public class S_Socket_1 : MonoBehaviour {
 			if(SameColourLeft == true && SameColourRight == true){
 				HitRight.collider.SendMessageUpwards ("BeingPoppedHrzntl"); 
 				HitLeft.collider.SendMessageUpwards("BeingPoppedHrzntl");
-				Destroy (BlockInPlace);
-				SameColourLeft = false;
-				SameColourRight = false;
-				//Add 10 points!!!!!!!!!!!!!!!!!!!
-				BlockInSocket = EmptySocketBlock;
-				BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
-				BlockInPlace.transform.parent = transform;
+
+				StartCoroutine(WaitAndDestroy(0.01f));
 			}
 		}
 	}
@@ -174,10 +169,16 @@ public class S_Socket_1 : MonoBehaviour {
 	}
 
 	void BeingPoppedHrzntl(){
+		StartCoroutine(WaitAndDestroy(0.01f));
+	}
+
+	IEnumerator WaitAndDestroy(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
-		//Add 10 points!!!!!!!!!!!!!!!!!!!
+		//Add 10 points!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;
