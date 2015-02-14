@@ -3,6 +3,7 @@ using System.Collections;
 
 public class S_Socket_2 : MonoBehaviour {
 
+
 	public bool SameColourAbove = false;
 	public bool SameColourUnder = false;
 	public bool Empty = true;
@@ -27,6 +28,7 @@ public class S_Socket_2 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
 	}
 	
 	// Update is called once per frame
@@ -108,6 +110,7 @@ public class S_Socket_2 : MonoBehaviour {
 			print ("red detroyedS2");
 			BlockInSocket = RedBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 			print ("and replacedS2");
 		}
 		if (Empty == false){
@@ -120,6 +123,7 @@ public class S_Socket_2 : MonoBehaviour {
 			print ("blue detroyedS2");
 			BlockInSocket = BlueBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 			print ("and replacedS2");
 		}
 		if (Empty == false){
@@ -132,6 +136,7 @@ public class S_Socket_2 : MonoBehaviour {
 			print ("green detroyedS2");
 			BlockInSocket = GreenBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 			print ("and replacedS2");
 		}
 		if (Empty == false){
@@ -144,6 +149,7 @@ public class S_Socket_2 : MonoBehaviour {
 			print ("yellow detroyedS2");
 			BlockInSocket = YellowBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 			print ("and replacedS2");
 		}
 		if (Empty == false){
@@ -159,6 +165,7 @@ public class S_Socket_2 : MonoBehaviour {
 			SameColourAbove = false;
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		else if (Empty == true){
 			Socket1.SendMessage ("DestroyBlock");
@@ -173,6 +180,7 @@ public class S_Socket_2 : MonoBehaviour {
 		//Add 20 points!!!!!!!!!!!!!!!!!!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
 		Socket1.SendMessage("BeingPoppedVrtcl"); 
 		Socket3.SendMessage("BeingPoppedVrtcl"); // I can't just make this pop, because it will interfear with it's own 'Pop'
 	}
@@ -184,6 +192,7 @@ public class S_Socket_2 : MonoBehaviour {
 		//Add 20 points!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
 	}
 
 
@@ -196,6 +205,7 @@ public class S_Socket_2 : MonoBehaviour {
 			Socket1.SendMessage ("AddRedBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false && BlockInSocket == BlueBlock){
 			Destroy (BlockInPlace);
@@ -204,6 +214,7 @@ public class S_Socket_2 : MonoBehaviour {
 			Socket1.SendMessage ("AddBlueBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false && BlockInSocket == GreenBlock){
 			Destroy (BlockInPlace);
@@ -212,6 +223,7 @@ public class S_Socket_2 : MonoBehaviour {
 			Socket1.SendMessage ("AddGreenBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false && BlockInSocket == YellowBlock){
 			Destroy (BlockInPlace);
@@ -220,6 +232,7 @@ public class S_Socket_2 : MonoBehaviour {
 			Socket1.SendMessage ("AddYellowBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 	}
 }

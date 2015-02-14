@@ -28,6 +28,7 @@ public class S_Socket_3 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
 	}
 	
 	// Update is called once per frame
@@ -107,6 +108,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			BlockInSocket = RedBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false){
 			Socket4.SendMessage ("AddRedBlock");
@@ -117,6 +119,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			BlockInSocket = BlueBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false){
 			Socket4.SendMessage ("AddBlueBlock");
@@ -127,6 +130,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			BlockInSocket = GreenBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false){
 			Socket4.SendMessage ("AddGreenBlock");
@@ -137,6 +141,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			BlockInSocket = YellowBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false){
 			Socket4.SendMessage ("AddYellowBlock");
@@ -149,6 +154,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		else if (Empty == true){
 			Socket2.SendMessage ("DestroyBlock");
@@ -162,6 +168,7 @@ public class S_Socket_3 : MonoBehaviour {
 		//Add 20 points!!!!!!!!!!!!!!!!!!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
 		Socket2.SendMessage("BeingPoppedVrtcl"); 
 		Socket4.SendMessage("BeingPoppedVrtcl");
 	}
@@ -173,6 +180,7 @@ public class S_Socket_3 : MonoBehaviour {
 		//Add 20 points!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
 	}
 
 
@@ -184,6 +192,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Socket2.SendMessage ("AddRedBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false && BlockInSocket == BlueBlock){
 			Destroy (BlockInPlace);
@@ -192,6 +201,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Socket2.SendMessage ("AddBlueBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false && BlockInSocket == GreenBlock){
 			Destroy (BlockInPlace);
@@ -200,6 +210,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Socket2.SendMessage ("AddGreenBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false && BlockInSocket == YellowBlock){
 			Destroy (BlockInPlace);
@@ -208,6 +219,7 @@ public class S_Socket_3 : MonoBehaviour {
 			Socket2.SendMessage ("AddYellowBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
 		}
 	}
 }
