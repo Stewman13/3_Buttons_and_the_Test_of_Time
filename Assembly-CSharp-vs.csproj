@@ -47,9 +47,12 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\S_Game_Controller.cs" />
+     <Compile Include="Assets\Scripts\S_Menu_Play.cs" />
+     <Compile Include="Assets\Scripts\S_Menu_Quit.cs" />
      <Compile Include="Assets\Scripts\S_Next_Block_Bottom.cs" />
      <Compile Include="Assets\Scripts\S_Next_Block_Top.cs" />
      <Compile Include="Assets\Scripts\S_Next_Blocks_Controller.cs" />
+     <Compile Include="Assets\Scripts\S_Pause.cs" />
      <Compile Include="Assets\Scripts\S_Socket_1.cs" />
      <Compile Include="Assets\Scripts\S_Socket_2.cs" />
      <Compile Include="Assets\Scripts\S_Socket_3.cs" />

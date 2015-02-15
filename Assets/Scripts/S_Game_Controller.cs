@@ -3,6 +3,10 @@ using System.Collections;
 
 public class S_Game_Controller : MonoBehaviour {
 
+	public TextMesh GameOverScore;
+	public TextMesh GameOverText;
+	public TextMesh GameOverRetry;
+
 	public TextMesh TimeDisplay;
 	public float timer;
 	public string timerFormatted;
@@ -12,6 +16,7 @@ public class S_Game_Controller : MonoBehaviour {
 	public TextMesh ScoreDisplay;
 	public float TotalScore;
 	public string scoreFormat;
+	public bool ScoreDisplayisHere = true;
 
 	// Use this for initialization
 	void Start () {
@@ -37,10 +42,35 @@ public class S_Game_Controller : MonoBehaviour {
 
 		if(timer <= 0.0f){
 			timer = 0;
+
+			Screen.lockCursor = false;
+			Time.timeScale = 0;
+			ScoreDisplayisHere = false;
+			GameOverText.text = ("GAME OVER");
+			Destroy(ScoreDisplay);
+			GameOverRetry.text = ("Esc To Retry");
+
+			if(Input.GetKeyUp (KeyCode.Escape)){
+				Application.LoadLevel(Application.loadedLevel);
+			}
+
+		//	StartCoroutine(GameOver(3.0f));
 			print("GameOver!");
 		}
 	}
 
+	/*
+	IEnumerator GameOver(float waitTime) {
+		Screen.lockCursor = false;
+		Time.timeScale = 0;
+		ScoreDisplayisHere = false;
+		GameOverText.text = ("GAME OVER");
+		Destroy(ScoreDisplay);
+
+		yield return new WaitForSeconds(waitTime);
+		Application.LoadLevel(0);
+	}
+*/
 	void TickQuickerON(){
 		isTickingQuicker = true;
 	}
@@ -64,7 +94,12 @@ public class S_Game_Controller : MonoBehaviour {
 		int points = Mathf.FloorToInt(TotalScore);
 
 		string scoreFormat = string.Format("{000000}", points);
-		ScoreDisplay.text = scoreFormat;
+		if(ScoreDisplayisHere == true){
+			ScoreDisplay.text = scoreFormat;
+		}
+		if(ScoreDisplayisHere == false){
+			GameOverScore.text = scoreFormat;
+		}
 	}
 	void Add10Points(){
 		TotalScore += 10;
