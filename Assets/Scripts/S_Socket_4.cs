@@ -3,9 +3,10 @@ using System.Collections;
 
 public class S_Socket_4 : MonoBehaviour {
 
-	
 	public bool SameColourAbove = false;
 	public bool SameColourUnder = false;
+	public bool SameColourLeft = false;
+	public bool SameColourRight = false;
 	public bool Empty = true;
 
 	public float BlockGapDistance  = 2;
@@ -51,10 +52,17 @@ public class S_Socket_4 : MonoBehaviour {
 	void RayCasts(){
 		RaycastHit HitDown;
 		RaycastHit HitUp;
+		RaycastHit HitLeft;
+		RaycastHit HitRight;
+		
 		
 		Ray ColourCheckerUp = new Ray(transform.position, Vector3.up);
 		Ray ColourCheckerDown = new Ray(transform.position, Vector3.down);
+		Ray ColourCheckerLeft = new Ray(transform.position, Vector3.left);
+		Ray ColourCheckerRight = new Ray(transform.position, Vector3.right);
 		
+		Debug.DrawRay(transform.position, Vector3.left * BlockGapDistance);
+		Debug.DrawRay(transform.position, Vector3.right * BlockGapDistance);
 		Debug.DrawRay(transform.position, Vector3.up * BlockGapDistance);
 		Debug.DrawRay(transform.position, Vector3.down * BlockGapDistance);
 
@@ -93,6 +101,46 @@ public class S_Socket_4 : MonoBehaviour {
 					SameColourAbove = false;
 				}
 			}
+			if(Physics.Raycast(ColourCheckerRight, out HitRight, BlockGapDistance)){ 
+				if(HitRight.collider.tag == "Red_Box"  && BlockInSocket == RedBlock){
+					SameColourRight = true;
+				}
+				if(HitRight.collider.tag == "Blue_Box"  && BlockInSocket == BlueBlock){
+					SameColourRight = true;
+				}
+				if(HitRight.collider.tag == "Green_Box"  && BlockInSocket == GreenBlock){
+					SameColourRight = true;
+				}
+				if(HitRight.collider.tag == "Yellow_Box"  && BlockInSocket == YellowBlock){
+					SameColourRight = true;
+				}
+				if(HitRight.collider.tag == "Empty_Socket"){
+					SameColourRight = false;
+				}
+			}
+			if(Physics.Raycast(ColourCheckerLeft, out HitLeft, BlockGapDistance)){ 
+				if(HitLeft.collider.tag == "Red_Box"  && BlockInSocket == RedBlock){
+					SameColourLeft = true;
+				}
+				if(HitLeft.collider.tag == "Blue_Box"  && BlockInSocket == BlueBlock){
+					SameColourLeft = true;
+				}
+				if(HitLeft.collider.tag == "Green_Box"  && BlockInSocket == GreenBlock){
+					SameColourLeft = true;
+				}
+				if(HitLeft.collider.tag == "Yellow_Box"  && BlockInSocket == YellowBlock){
+					SameColourLeft = true;
+				}
+				if(HitLeft.collider.tag == "Empty_Socket"){
+					SameColourLeft = false;
+				}
+			}
+			if(SameColourLeft == true && SameColourRight == true){
+				HitRight.collider.SendMessageUpwards ("BeingPoppedHrzntl"); 
+				HitLeft.collider.SendMessageUpwards("BeingPoppedHrzntl");
+				
+				StartCoroutine(WaitAndDestroy(0.01f));
+			}
 		}
 	}
 
@@ -105,6 +153,10 @@ public class S_Socket_4 : MonoBehaviour {
 	
 	//Set of 'add block' Recivers
 	void AddRedBlock(){
+		StartCoroutine(AR(0.01f));
+		}
+		IEnumerator AR(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			BlockInSocket = RedBlock;
@@ -116,6 +168,10 @@ public class S_Socket_4 : MonoBehaviour {
 		}
 	}
 	void AddBlueBlock(){
+		StartCoroutine(AB(0.01f));
+		}
+		IEnumerator AB(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			BlockInSocket = BlueBlock;
@@ -127,6 +183,10 @@ public class S_Socket_4 : MonoBehaviour {
 		}
 	}
 	void AddGreenBlock(){
+		StartCoroutine(AG(0.01f));
+		}
+		IEnumerator AG(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			BlockInSocket = GreenBlock;
@@ -138,6 +198,10 @@ public class S_Socket_4 : MonoBehaviour {
 		}
 	}
 	void AddYellowBlock(){
+		StartCoroutine(AY(0.01f));
+		}
+		IEnumerator AY(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			BlockInSocket = YellowBlock;
@@ -153,6 +217,10 @@ public class S_Socket_4 : MonoBehaviour {
 	void DestroyBlock (){
 		if (Empty == false){
 			Destroy (BlockInPlace);
+			SameColourUnder = false;
+			SameColourAbove = false;
+			SameColourLeft = false;
+			SameColourRight = false;
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 			BlockInPlace.transform.parent = transform;
@@ -166,6 +234,8 @@ public class S_Socket_4 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourUnder = false;
 		SameColourAbove = false;
+		SameColourLeft = false;
+		SameColourRight = false;
 		//Add 20 points!!!!!!!!!!!!!!!!!!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
@@ -178,17 +248,39 @@ public class S_Socket_4 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourUnder = false;
 		SameColourAbove = false;
+		SameColourLeft = false;
+		SameColourRight = false;
 		//Add 20 points!!
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;
 	}
 
+	void BeingPoppedHrzntl(){
+		StartCoroutine(WaitAndDestroy(0.01f));
+	}
+	
+	IEnumerator WaitAndDestroy(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
+		
+		Destroy (BlockInPlace);
+		SameColourUnder = false;
+		SameColourAbove = false;
+		SameColourLeft = false;
+		SameColourRight = false;
+		//Add 10 points!!
+		BlockInSocket = EmptySocketBlock;
+		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+		BlockInPlace.transform.parent = transform;
+	}
+	
 	void Emptying(){
 		if (Empty == false && BlockInSocket == RedBlock){
 			Destroy (BlockInPlace);
 			SameColourUnder = false;
 			SameColourAbove = false;
+			SameColourLeft = false;
+			SameColourRight = false;
 			Socket3.SendMessage ("AddRedBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
@@ -198,6 +290,8 @@ public class S_Socket_4 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			SameColourUnder = false;
 			SameColourAbove = false;
+			SameColourLeft = false;
+			SameColourRight = false;
 			Socket3.SendMessage ("AddBlueBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
@@ -207,6 +301,8 @@ public class S_Socket_4 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			SameColourUnder = false;
 			SameColourAbove = false;
+			SameColourLeft = false;
+			SameColourRight = false;
 			Socket3.SendMessage ("AddGreenBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
@@ -216,6 +312,8 @@ public class S_Socket_4 : MonoBehaviour {
 			Destroy (BlockInPlace);
 			SameColourUnder = false;
 			SameColourAbove = false;
+			SameColourLeft = false;
+			SameColourRight = false;
 			Socket3.SendMessage ("AddYellowBlock");
 			BlockInSocket = EmptySocketBlock;
 			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;

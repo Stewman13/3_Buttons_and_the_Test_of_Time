@@ -93,10 +93,9 @@ public class S_Socket_1 : MonoBehaviour {
 				}
 			}
 			if(SameColourLeft == true && SameColourRight == true){
+				StartCoroutine(WaitAndDestroy(0.01f));
 				HitRight.collider.SendMessageUpwards ("BeingPoppedHrzntl"); 
 				HitLeft.collider.SendMessageUpwards("BeingPoppedHrzntl");
-
-				StartCoroutine(WaitAndDestroy(0.01f));
 			}
 		}
 	}
@@ -104,6 +103,10 @@ public class S_Socket_1 : MonoBehaviour {
 
 	//Set of 'add block' Recivers
 	void AddRedBlock(){
+		StartCoroutine(ARed(0.01f));
+	}
+	IEnumerator ARed(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			print ("red detroyed");
@@ -117,6 +120,10 @@ public class S_Socket_1 : MonoBehaviour {
 		}
 	}
 	void AddBlueBlock(){
+		StartCoroutine(ABlue(0.01f));
+	}
+	IEnumerator ABlue(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			print ("blue detroyed");
@@ -130,6 +137,10 @@ public class S_Socket_1 : MonoBehaviour {
 		}
 	}
 	void AddGreenBlock(){
+		StartCoroutine(AGreen(0.01f));
+	}
+	IEnumerator AGreen(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			print ("green detroyed");
@@ -143,6 +154,10 @@ public class S_Socket_1 : MonoBehaviour {
 		}
 	}
 	void AddYellowBlock(){
+		StartCoroutine(AYellow(0.01f));
+	}
+	IEnumerator AYellow(float waitTime) {
+		yield return new WaitForSeconds(waitTime);
 		if (Empty == true){
 			Destroy (BlockInPlace);
 			print ("yellow detroyed");
@@ -155,8 +170,18 @@ public class S_Socket_1 : MonoBehaviour {
 			Socket2.SendMessage ("AddYellowBlock");
 		}
 	}
-	//End of Recivers
+		//End of Recivers
 
+	void DestroyBlock (){
+		if (Empty == false){
+			Destroy (BlockInPlace);
+			SameColourLeft = false;
+			SameColourRight = false;
+			BlockInSocket = EmptySocketBlock;
+			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
+			BlockInPlace.transform.parent = transform;
+		}
+	}
 
 	void BeingPoppedVrtcl(){
 		Destroy (BlockInPlace);
@@ -182,16 +207,5 @@ public class S_Socket_1 : MonoBehaviour {
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;
-	}
-
-	void DestroyBlock (){
-		if (Empty == false){
-			Destroy (BlockInPlace);
-			SameColourLeft = false;
-			SameColourRight = false;
-			BlockInSocket = EmptySocketBlock;
-			BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
-			BlockInPlace.transform.parent = transform;
-		}
 	}
 }
