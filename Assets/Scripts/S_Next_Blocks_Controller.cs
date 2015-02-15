@@ -3,6 +3,8 @@ using System.Collections;
 
 public class S_Next_Blocks_Controller : MonoBehaviour {
 
+
+	public AudioSource TowerSelect;
 	public GameObject TowerSelected;
 
 	public GameObject Tower1;
@@ -28,29 +30,34 @@ public class S_Next_Blocks_Controller : MonoBehaviour {
 		TowerSelected = Tower1;
 		NextBlockTop.SendMessage ("SelectedTower1");
 		NextBlockBottom.SendMessage ("SelectedTower1");
+		TowerSelect.Play();
 	}
 	void SelectedTower2(){
 		print ("tower 2 Selected");
 		TowerSelected = Tower2;
 		NextBlockTop.SendMessage ("SelectedTower2");
 		NextBlockBottom.SendMessage ("SelectedTower2");
+		TowerSelect.Play();
 	}
 	void SelectedTower3(){
 		print ("tower 3 Selected");
 		TowerSelected = Tower3;
 		NextBlockTop.SendMessage ("SelectedTower3");
 		NextBlockBottom.SendMessage ("SelectedTower3");
+		TowerSelect.Play();
 	}
 	void SelectedTower4(){
 		print ("tower 4 Selected");
 		TowerSelected = Tower4;
 		NextBlockTop.SendMessage ("SelectedTower4");
 		NextBlockBottom.SendMessage ("SelectedTower4");
+		TowerSelect.Play();
 	}
 	void SelectedTower5(){
 		print ("tower 5 Selected");
 		TowerSelected = Tower5;
 		NextBlockTop.SendMessage ("SelectedTower5");
 		NextBlockBottom.SendMessage ("SelectedTower5");
+		TowerSelect.Play();
 	}
 }

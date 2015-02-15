@@ -51,7 +51,7 @@ public class S_Game_Controller : MonoBehaviour {
 		timer -= 3.0f;
 	}
 	void TimePenaltyLarge(){
-		timer -= 15.0f;
+		timer -= 7.0f;
 	}
 	void TimeBonus(){
 		timer += 2.0f;

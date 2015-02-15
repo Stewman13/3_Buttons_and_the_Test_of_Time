@@ -10,6 +10,8 @@ public class S_Socket_5 : MonoBehaviour {
 
 	public float BlockGapDistance  = 2;
 
+	public AudioSource Error; 
+
 	public GameObject Socket1;
 	public GameObject Socket2;
 	public GameObject Socket3;
@@ -41,6 +43,10 @@ public class S_Socket_5 : MonoBehaviour {
 	void TimeBurner(){
 		if(Empty == false){
 			Camera.main.SendMessage("BurnTime");
+			if(Input.GetKeyUp(KeyCode.RightArrow)){
+				Camera.main.SendMessage("TimePenaltyLarge");
+				Error.Play();
+			}
 		}
 	}
 	void EmptySocket(){
@@ -134,7 +140,7 @@ public class S_Socket_5 : MonoBehaviour {
 			BlockInPlace.transform.parent = transform;
 		}
 		if (Empty == false){
-			//!!!
+			//Leave these blank... it works.
 		}
 	}
 	void AddGreenBlock(){
