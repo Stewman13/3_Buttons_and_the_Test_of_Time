@@ -35,9 +35,14 @@ public class S_Socket_5 : MonoBehaviour {
 	void Update () {
 		EmptySocket();
 		RayCasts();
-
+		TimeBurner();
 	}
-	
+
+	void TimeBurner(){
+		if(Empty == false){
+			Camera.main.SendMessage("BurnTime");
+		}
+	}
 	void EmptySocket(){
 		if (BlockInSocket == EmptySocketBlock){
 			Empty = true;
@@ -182,7 +187,8 @@ public class S_Socket_5 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
-		//Add 20 points!!
+		Camera.main.SendMessage("Add10Points");
+		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;
@@ -198,7 +204,8 @@ public class S_Socket_5 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
-		//Add 10 points!!
+		Camera.main.SendMessage("Add20Points");
+		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;

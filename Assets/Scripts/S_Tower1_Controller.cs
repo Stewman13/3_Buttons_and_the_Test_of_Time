@@ -3,6 +3,9 @@ using System.Collections;
 
 public class S_Tower1_Controller : MonoBehaviour {
 
+	public GameObject TowerTop;
+	public GameObject TowerBottom;
+
 	public AudioSource DestroySound;
 
 	public GameObject NextBlocks;
@@ -25,7 +28,8 @@ public class S_Tower1_Controller : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		TowerTop.renderer.material.color = Color.gray;
+		TowerBottom.renderer.material.color = Color.gray;
 	}
 	
 	// Update is called once per frame
@@ -40,12 +44,15 @@ public class S_Tower1_Controller : MonoBehaviour {
 			ThisIsSelected = false;
 			print ("sent1");
 			NextTower1.SendMessage ("Selected1");
+			TowerTop.renderer.material.color = Color.white;
+			TowerBottom.renderer.material.color = Color.white;
 		}
 	}
 
 	void DestroyBlockCommand(){
 		if (Input.GetKeyUp(KeyCode.LeftArrow) && ThisIsSelected == true){
 			print ("sent1");
+			Camera.main.SendMessage("TimePenaltySmall");
 			DestroySound.Play();
 			Socket5.SendMessage ("DestroyBlock");
 			Socket10.SendMessage ("DestroyBlock");
@@ -56,6 +63,8 @@ public class S_Tower1_Controller : MonoBehaviour {
 		BugFix = true;
 		ThisIsSelected = true;
 		NextBlocks.SendMessage("SelectedTower1");
+		TowerTop.renderer.material.color = Color.gray;
+		TowerBottom.renderer.material.color = Color.gray;
 	}
 
 	//Colour Add for Socket 1 ... top

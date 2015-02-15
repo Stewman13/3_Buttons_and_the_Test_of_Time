@@ -246,7 +246,8 @@ public class S_Socket_2 : MonoBehaviour {
 		SameColourAbove = false;
 		SameColourLeft = false;
 		SameColourRight = false;
-		//Add 20 points!!!!!!!!!!!!!!!!!!!
+		Camera.main.SendMessage("Add10Points");
+		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;
@@ -260,7 +261,7 @@ public class S_Socket_2 : MonoBehaviour {
 		SameColourAbove = false;
 		SameColourLeft = false;
 		SameColourRight = false;
-		//Add 20 points!!
+		Camera.main.SendMessage("Add10Points");
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;
@@ -278,7 +279,8 @@ public class S_Socket_2 : MonoBehaviour {
 		SameColourAbove = false;
 		SameColourLeft = false;
 		SameColourRight = false;
-		//Add 10 points!!
+		Camera.main.SendMessage("Add20Points");
+		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
 		BlockInPlace = Instantiate(BlockInSocket, transform.position, transform.rotation) as GameObject;
 		BlockInPlace.transform.parent = transform;

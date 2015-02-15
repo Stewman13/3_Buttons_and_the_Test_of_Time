@@ -5,6 +5,9 @@ public class S_Tower3_Controller : MonoBehaviour {
 
 	public AudioSource DestroySound;
 
+	public GameObject TowerTop;
+	public GameObject TowerBottom;
+
 	public GameObject NextBlocks;
 	public GameObject ThisTower3;
 	public GameObject NextTower3;
@@ -40,12 +43,15 @@ public class S_Tower3_Controller : MonoBehaviour {
 			ThisIsSelected = false;
 			print ("sent3");
 			NextTower3.SendMessage ("Selected3");
+			TowerTop.renderer.material.color = Color.white;
+			TowerBottom.renderer.material.color = Color.white;
 		}
 	}
 
 	void DestroyBlockCommand(){
 		if (Input.GetKeyUp(KeyCode.LeftArrow) && ThisIsSelected == true){
 			print ("sent3");
+			Camera.main.SendMessage("TimePenaltySmall");
 			DestroySound.Play();
 			Socket5.SendMessage ("DestroyBlock");
 			Socket10.SendMessage ("DestroyBlock");
@@ -56,6 +62,8 @@ public class S_Tower3_Controller : MonoBehaviour {
 		BugFix = true;
 		ThisIsSelected = true;
 		NextBlocks.SendMessage("SelectedTower3");
+		TowerTop.renderer.material.color = Color.gray;
+		TowerBottom.renderer.material.color = Color.gray;
 	}
 	
 	
