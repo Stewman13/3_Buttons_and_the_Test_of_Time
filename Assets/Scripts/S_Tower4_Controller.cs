@@ -41,10 +41,13 @@ public class S_Tower4_Controller : MonoBehaviour {
 	void SelectNextTower(){
 		if (Input.GetKeyUp(KeyCode.Space) && ThisIsSelected == true && BugFix == false){
 			ThisIsSelected = false;
+			Socket5.SendMessage("unSelected");
+			Socket10.SendMessage("unSelected");
 			print ("sent4");
 			NextTower4.SendMessage ("Selected4");
 			TowerTop.renderer.material.color = Color.white;
 			TowerBottom.renderer.material.color = Color.white;
+			this.transform.localScale = new Vector3 (1,1,1);
 		}
 	}
 	
@@ -61,9 +64,12 @@ public class S_Tower4_Controller : MonoBehaviour {
 	void Selected3(){
 		BugFix = true;
 		ThisIsSelected = true;
+		Socket5.SendMessage("isSelected");
+		Socket10.SendMessage("isSelected");
 		NextBlocks.SendMessage("SelectedTower4");
 		TowerTop.renderer.material.color = Color.gray;
 		TowerBottom.renderer.material.color = Color.gray;
+		this.transform.localScale = new Vector3 (1.02f,1.02f,1.02f);
 	}
 	
 	//Colour Add for Socket 1

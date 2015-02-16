@@ -14,7 +14,8 @@ public class S_Pause : MonoBehaviour {
 		Screen.lockCursor = true;
 		Time.timeScale = 1;
 	}
-	
+
+	//You Can Still use the 3 Buttons while paused! I have a fix for this. But no time to implement.
 	void OnGUI()
 	{
 		if(paused)
@@ -22,7 +23,7 @@ public class S_Pause : MonoBehaviour {
 			GUI.BeginGroup(new Rect(((Screen.width/2) - (groupWidth/2)),((Screen.height/2) - (groupHeight/2)), groupWidth, groupHeight));
 			if(GUI.Button (new Rect(0,0,buttonWidth, buttonHeight),"Main Menu"))
 			{
-				Application.LoadLevel(0);
+				Application.LoadLevel(2);
 			}
 			if(GUI.Button (new Rect(0,60,buttonWidth,buttonHeight),"Resume Game"))
 			{

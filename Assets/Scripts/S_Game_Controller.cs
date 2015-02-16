@@ -3,6 +3,10 @@ using System.Collections;
 
 public class S_Game_Controller : MonoBehaviour {
 
+	public AudioSource GameOverAudio;
+	public bool Over = false;
+	public int playOnce = 0;
+
 	public TextMesh GameOverScore;
 	public TextMesh GameOverText;
 	public TextMesh GameOverRetry;
@@ -27,6 +31,11 @@ public class S_Game_Controller : MonoBehaviour {
 		TickingTimer();
 		TimerDisplayer();
 		RunScoreDisplay();
+
+		if(Over == true && playOnce == 0){
+			playOnce++;
+			GameOverAudio.Play();
+		}
 	}
 
 	void TimerDisplayer(){
@@ -47,6 +56,7 @@ public class S_Game_Controller : MonoBehaviour {
 			Time.timeScale = 0;
 			ScoreDisplayisHere = false;
 			GameOverText.text = ("GAME OVER");
+			Over = true;
 			Destroy(ScoreDisplay);
 			GameOverRetry.text = ("Esc To Retry");
 

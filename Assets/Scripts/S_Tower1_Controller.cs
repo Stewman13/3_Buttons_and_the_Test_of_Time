@@ -30,6 +30,7 @@ public class S_Tower1_Controller : MonoBehaviour {
 	void Start () {
 		TowerTop.renderer.material.color = Color.gray;
 		TowerBottom.renderer.material.color = Color.gray;
+		this.transform.localScale = new Vector3 (1.02f,1.02f,1.02f);
 	}
 	
 	// Update is called once per frame
@@ -42,10 +43,13 @@ public class S_Tower1_Controller : MonoBehaviour {
 	void SelectNextTower(){
 		if (Input.GetKeyUp(KeyCode.Space) && ThisIsSelected == true && BugFix == false){
 			ThisIsSelected = false;
+			Socket5.SendMessage("unSelected");
+			Socket10.SendMessage("unSelected");
 			print ("sent1");
 			NextTower1.SendMessage ("Selected1");
 			TowerTop.renderer.material.color = Color.white;
 			TowerBottom.renderer.material.color = Color.white;
+			this.transform.localScale = new Vector3 (1,1,1);
 		}
 	}
 
@@ -62,9 +66,12 @@ public class S_Tower1_Controller : MonoBehaviour {
 	void Selected5(){
 		BugFix = true;
 		ThisIsSelected = true;
+		Socket5.SendMessage("isSelected");
+		Socket10.SendMessage("isSelected");
 		NextBlocks.SendMessage("SelectedTower1");
 		TowerTop.renderer.material.color = Color.gray;
 		TowerBottom.renderer.material.color = Color.gray;
+		this.transform.localScale = new Vector3 (1.02f,1.02f,1.02f);
 	}
 
 	//Colour Add for Socket 1 ... top

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class S_Socket_1 : MonoBehaviour {
 
+	public AudioSource PopBlocks;
+	public ParticleSystem DestroySystem;
 
 	public bool SameColourLeft = false;
 	public bool SameColourRight = false;
@@ -187,6 +189,8 @@ public class S_Socket_1 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
+		Instantiate(DestroySystem,transform.position,transform.rotation);
+		PopBlocks.Play();
 		Camera.main.SendMessage("Add10Points");
 		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
@@ -204,6 +208,8 @@ public class S_Socket_1 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
+		Instantiate(DestroySystem,transform.position,transform.rotation);
+		PopBlocks.Play();
 		Camera.main.SendMessage("Add20Points");
 		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;

@@ -1,13 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\S_Game_Controller.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\S_Menu_GameTitle.cs">
     <Files>
-      <File FileName="Assets\Scripts\S_Game_Controller.cs" Line="50" Column="26" />
-      <File FileName="Assets\Scripts\S_Menu_Play.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\S_Menu_Quit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\S_Game_Controller.cs" Line="48" Column="31" />
-      <File FileName="Assets\Scripts\S_Pause.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\S_Socket_1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\S_Menu_GameTitle.cs" Line="9" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

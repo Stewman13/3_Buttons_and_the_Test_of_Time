@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\S_Game_Controller.cs" />
+     <Compile Include="Assets\Scripts\S_Menu_GameTitle.cs" />
+     <Compile Include="Assets\Scripts\S_Menu_Instructions.cs" />
+     <Compile Include="Assets\Scripts\S_Menu_Main.cs" />
      <Compile Include="Assets\Scripts\S_Menu_Play.cs" />
      <Compile Include="Assets\Scripts\S_Menu_Quit.cs" />
      <Compile Include="Assets\Scripts\S_Next_Block_Bottom.cs" />

@@ -3,10 +3,14 @@ using System.Collections;
 
 public class S_Socket_5 : MonoBehaviour {
 
+	public AudioSource PopBlocks;
+	public ParticleSystem DestroySystem;
 	
 	public bool SameColourLeft = false;
 	public bool SameColourRight = false;
 	public bool Empty = true;
+
+	public bool selected = false;
 
 	public float BlockGapDistance  = 2;
 
@@ -40,10 +44,18 @@ public class S_Socket_5 : MonoBehaviour {
 		TimeBurner();
 	}
 
+	void isSelected(){
+		selected = true;
+	}
+
+	void unSelected(){
+		selected = false;
+	}
+
 	void TimeBurner(){
 		if(Empty == false){
 			Camera.main.SendMessage("BurnTime");
-			if(Input.GetKeyUp(KeyCode.RightArrow)){
+			if(Input.GetKeyUp(KeyCode.RightArrow) && selected == true){
 				Camera.main.SendMessage("TimePenaltyLarge");
 				Error.Play();
 			}
@@ -193,6 +205,8 @@ public class S_Socket_5 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
+		Instantiate(DestroySystem,transform.position,transform.rotation);
+		PopBlocks.Play();
 		Camera.main.SendMessage("Add10Points");
 		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
@@ -210,6 +224,8 @@ public class S_Socket_5 : MonoBehaviour {
 		Destroy (BlockInPlace);
 		SameColourLeft = false;
 		SameColourRight = false;
+		Instantiate(DestroySystem,transform.position,transform.rotation);
+		PopBlocks.Play();
 		Camera.main.SendMessage("Add20Points");
 		Camera.main.SendMessage("TimeBonus");
 		BlockInSocket = EmptySocketBlock;
